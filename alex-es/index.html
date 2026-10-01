@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alex — Entrenador Personal en Madrid</title>
+<meta name="description" content="Entrenamiento personalizado en Madrid (Basic-Fit) y online. Fuerza, resistencia, calistenia, ganancia muscular y pérdida de peso. Tu mejor versión, mi misión.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💪</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,400..900;1,62..125,400..900&family=JetBrains+Mono:wght@400;500&family=Montserrat:ital,wght@1,800&display=swap" rel="stylesheet">
+<style>
+/* ================= TOKENS ================= */
+:root{
+  --bg:#08090b; --bg-2:#141619; --line:#2a2d31;
+  --text:#f2f3f1; --muted:#a3a8ad;
+  --accent:#4fe0e6;          /* azul claro (imagen de referencia) */
+  --accent-ink:#06191a;      /* texto sobre bloques azules */
+  --head:var(--accent);      /* color de títulos */
+  --slogan-2:#f5b700;        /* "MI MISIÓN." amarillo como en la foto */
+  --photo:linear-gradient(160deg,#1d2a2e 0%,#0d1213 60%,#08090b 100%);
+  --sans:"Archivo",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --slogan:"Montserrat","Archivo",system-ui,sans-serif;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+[data-v="b"]{
+  --bg:#06121a; --bg-2:#0c1f2a; --line:#1d3a47;
+  --text:#e9f9fa; --muted:#93b3bb;
+  --slogan-2:var(--accent);
+  --photo:linear-gradient(160deg,#123544 0%,#0a1c25 60%,#06121a 100%);
+}
+[data-v="c"]{
+  --bg:#eef9fa; --bg-2:#ffffff; --line:#cfe6e8;
+  --text:#0b1f22; --muted:#4b6266;
+  --head:#0a8d94;            /* turquesa más oscuro: legible sobre claro */
+  --slogan-2:#0a8d94;
+  --photo:linear-gradient(160deg,#bdeff2 0%,#7fdde2 100%);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{width:min(1120px,100% - 40px);margin-inline:auto}
+
+/* ================= HEADER ================= */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+.logo{font-weight:900;font-stretch:115%;font-size:30px;letter-spacing:-.02em;color:var(--head);text-decoration:none}
+.nav{display:none;gap:28px;font-weight:600;font-size:15px}
+.nav a{text-decoration:none;color:var(--muted)} .nav a:hover{color:var(--text)}
+.sq{display:grid;place-items:center;width:58px;height:58px;background:var(--accent);color:var(--accent-ink);text-decoration:none}
+.sq svg{width:24px;height:24px}
+@media(min-width:880px){.nav{display:flex}}
+
+/* ================= HERO ================= */
+.hero{padding:72px 0 0}
+.tag{display:inline-flex;align-items:center;gap:12px;font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--text);flex-wrap:wrap}
+.tag .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 18%,transparent);flex:none}
+.hero-text{container-type:inline-size;min-width:0}
+h1{font-weight:900;font-stretch:108%;text-transform:uppercase;line-height:.92;letter-spacing:-.03em;font-size:clamp(40px,12.5cqi,112px);margin:40px 0 0;color:var(--head)}
+h1 .ol{color:transparent;-webkit-text-stroke:2px var(--head)}
+.ctas{display:flex;flex-direction:column;align-items:flex-start;gap:22px;margin-top:48px}
+.btn{display:inline-flex;align-items:stretch;background:var(--accent);color:var(--accent-ink);font-weight:800;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;font-size:17px;border:0;cursor:pointer;font-family:inherit}
+.btn span{padding:24px 30px}
+.btn i{display:grid;place-items:center;padding:0 30px;border-left:1px solid color-mix(in srgb,var(--accent-ink) 25%,transparent)}
+.btn svg{width:24px;height:24px}
+.link{font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);text-decoration:none;display:inline-flex;gap:12px;align-items:center}
+.link:hover{color:var(--text)}
+
+.hero-photo{container-type:inline-size;position:relative;margin-top:64px;aspect-ratio:4/5;max-height:760px;width:100%;background:var(--photo);overflow:hidden;display:flex;align-items:flex-end}
+.ph-label{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:color-mix(in srgb,var(--text) 45%,transparent)}
+.badge{position:absolute;top:20px;right:20px;width:clamp(96px,30cqi,140px);height:clamp(96px,30cqi,140px);z-index:1;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center}
+.badge svg.ring{position:absolute;inset:0;width:100%;height:100%;animation:spin 18s linear infinite}
+.badge .star{font-size:clamp(30px,9cqi,44px);font-weight:900}
+@keyframes spin{to{transform:rotate(360deg)}}
+.slogan{position:relative;width:100%;padding:90px 28px 34px;background:linear-gradient(transparent,color-mix(in srgb,#000 80%,transparent))}
+[data-v="c"] .slogan{background:linear-gradient(transparent,rgba(11,31,34,.85))}
+.slogan p{margin:0;font-family:var(--slogan);font-style:italic;font-weight:800;text-transform:uppercase;line-height:1.05;font-size:clamp(26px,10.5cqi,64px);color:var(--accent)}
+.slogan p b{display:block;color:var(--accent)}
+@media(min-width:960px){
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:64px;align-items:center}
+  .hero-photo{margin-top:0}
+}
+
+/* ================= STATS (formato de la imagen) ================= */
+.stats{margin-top:72px;background:var(--bg-2);border:1px solid var(--line);border-top:10px solid var(--accent);border-radius:14px 14px 0 0}
+.stat{display:flex;align-items:center;gap:26px;padding:44px clamp(24px,7vw,64px)}
+.stat+.stat{border-top:2px solid var(--line)}
+.num{font-weight:900;font-style:italic;font-stretch:62%;font-size:clamp(68px,15vw,120px);line-height:.8;letter-spacing:-.06em;color:var(--head);white-space:nowrap}
+.num .sl{display:inline-block;font-style:normal;font-weight:700;font-stretch:100%;font-size:.5em;vertical-align:.32em;margin:0 .14em 0 .06em;color:var(--text)}
+.num sup{font-size:.36em;vertical-align:-.1em;color:var(--text);margin-left:2px}
+[data-v="a"] .num sup,[data-v="b"] .num sup{color:#fff}
+.stat p{margin:0;font-weight:700;font-size:clamp(19px,4.6vw,26px);line-height:1.3}
+@media(min-width:880px){.stats{display:grid;grid-template-columns:repeat(3,1fr)}.stat+.stat{border-top:0;border-left:2px solid var(--line)}.stat{padding:48px 36px;flex-direction:column;align-items:flex-start;gap:18px}}
+
+/* ================= SECCIONES ================= */
+section.s{padding:110px 0 0}
+.idx{font-family:var(--mono);font-size:14px;color:var(--muted);margin:0 0 18px}
+h2{font-weight:900;font-stretch:105%;text-transform:uppercase;letter-spacing:-.025em;line-height:.95;font-size:clamp(38px,8vw,76px);margin:0;color:var(--head)}
+.lead{max-width:60ch;color:var(--muted);font-size:18px;margin:22px 0 0}
+h3{font-weight:900;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(24px,4.5vw,32px);line-height:1.05;margin:0;color:var(--head)}
+.desc{color:var(--muted);font-size:16px;margin:12px 0 0;max-width:52ch}
+
+/* método */
+.steps{display:grid;gap:0;margin-top:56px;border-top:1px solid var(--line)}
+.step{display:grid;grid-template-columns:70px 1fr;gap:16px;padding:32px 0;border-bottom:1px solid var(--line)}
+.step .n{font-family:var(--mono);font-size:15px;color:var(--accent);padding-top:6px}
+[data-v="c"] .step .n{color:var(--head)}
+@media(min-width:880px){.steps{grid-template-columns:repeat(3,1fr);border-top:0}.step{grid-template-columns:1fr;border-bottom:0;border-top:4px solid var(--head);padding-right:32px}}
+
+/* sobre mí */
+.about{display:grid;gap:44px;margin-top:56px}
+.about-photo{aspect-ratio:4/5;background:var(--photo);position:relative}
+.about h3{font-size:clamp(30px,6vw,46px)}
+.about .cert{font-family:var(--mono);font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:14px 0 24px}
+.about blockquote{margin:0;font-size:clamp(19px,2.6vw,23px);line-height:1.45;max-width:46ch}
+.about .more{color:var(--muted);margin:20px 0 32px;max-width:52ch}
+@media(min-width:880px){.about{grid-template-columns:.9fr 1.1fr;align-items:center}}
+
+/* servicios */
+.services{margin-top:56px;border-top:1px solid var(--line)}
+.svc{display:grid;gap:8px;padding:36px 0;border-bottom:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chip{border:1.5px solid var(--head);color:var(--head);padding:7px 14px;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.04em}
+@media(min-width:880px){.svc{grid-template-columns:1fr 1fr;gap:48px;align-items:start}}
+
+/* disponibilidad */
+.avail{margin-top:110px;background:var(--accent);color:var(--accent-ink);overflow:hidden}
+.marq{display:flex;white-space:nowrap;font-weight:900;font-stretch:110%;text-transform:uppercase;font-size:clamp(22px,4vw,34px);padding:18px 0;border-bottom:2px solid color-mix(in srgb,var(--accent-ink) 20%,transparent)}
+.marq div{animation:mq 26s linear infinite;padding-right:40px}
+@keyframes mq{to{transform:translateX(-100%)}}
+.avail-body{padding:56px 0 64px}
+.avail h2{color:var(--accent-ink)}
+.avail .lead{color:color-mix(in srgb,var(--accent-ink) 78%,transparent)}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:36px;max-width:620px}
+.day{aspect-ratio:1;display:grid;place-items:center;background:var(--accent-ink);color:var(--accent);font-weight:900;font-size:clamp(18px,4vw,26px)}
+.hours{margin-top:14px;font-family:var(--mono);font-size:14px;letter-spacing:.08em;text-transform:uppercase}
+
+/* resultados */
+.ba{position:relative;margin-top:56px;aspect-ratio:4/5;max-height:640px;max-width:560px;overflow:hidden;user-select:none;touch-action:pan-y}
+.ba .pane{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--mono);letter-spacing:.14em;font-size:13px;text-transform:uppercase}
+.ba .before{background:var(--bg-2);color:var(--muted)}
+.ba .after{background:var(--photo);color:var(--text);clip-path:inset(0 0 0 var(--pos,50%))}
+.ba .handle{position:absolute;top:0;bottom:0;left:var(--pos,50%);width:3px;background:var(--accent);transform:translateX(-50%)}
+.ba .handle::after{content:"⇆";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font-weight:900;font-size:20px}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
+.ba-wrap{display:grid;gap:40px}
+@media(min-width:880px){.ba-wrap{grid-template-columns:1fr 1fr;align-items:center}}
+
+/* faq */
+.faq{margin-top:56px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:28px 0;font-weight:800;font-size:clamp(19px,3.4vw,24px);color:var(--head)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-weight:400;font-size:30px;line-height:1;transition:transform .2s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{margin:0 0 28px;color:var(--muted);max-width:62ch}
+
+/* formulario */
+.contact{display:grid;gap:48px;margin-top:56px}
+.where{font-family:var(--mono);font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);line-height:1.9;margin-top:28px}
+form{background:var(--bg-2);border:1px solid var(--line);border-top:10px solid var(--accent);padding:clamp(24px,5vw,44px)}
+.row{display:grid;gap:18px}
+@media(min-width:620px){.row.two{grid-template-columns:1fr 1fr}}
+.f{display:grid;gap:8px;margin-bottom:20px}
+label{font-weight:700;font-size:15px}
+label .req{color:var(--head)} label .opt{color:var(--muted);font-weight:500}
+input,select,textarea{font:inherit;color:var(--text);background:var(--bg);border:1.5px solid var(--line);padding:15px 16px;width:100%;border-radius:0}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none}
+textarea{min-height:130px;resize:vertical}
+.unit{position:relative} .unit input{padding-right:52px}
+.unit span{position:absolute;right:16px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:15px;color:var(--muted);margin:6px 0 26px}
+.check input{width:22px;height:22px;flex:none;margin-top:1px;accent-color:var(--accent)}
+.err{color:#ff6b6b;font-size:14px}.err:empty{display:none}
+[data-v="c"] .err{color:#c62828}
+form .btn{width:100%;justify-content:space-between}
+.ok{display:none;padding:22px;border:2px solid var(--accent);margin-top:20px;font-weight:700}
+@media(min-width:960px){.contact{grid-template-columns:.8fr 1.2fr;align-items:start}}
+
+/* footer */
+footer{margin-top:110px;border-top:1px solid var(--line);padding:40px 0 56px;color:var(--muted);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+footer nav{display:flex;gap:24px}
+
+/* ======== SELECTOR DE VERSIONES (eliminar al publicar la versión final) ======== */
+.vs{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:50;display:flex;gap:4px;align-items:center;background:#fff;color:#111;padding:6px 6px 6px 16px;border-radius:999px;box-shadow:0 8px 30px rgba(0,0,0,.35);font:600 13px/1 var(--sans);white-space:nowrap}
+.vs button{font:700 13px/1 var(--sans);border:0;background:transparent;padding:10px 14px;border-radius:999px;cursor:pointer;color:#111}
+.vs button[aria-pressed="true"]{background:#111;color:#fff}
+.is-clean .vs{display:none}
+
+@media (prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="Alex, inicio">ALEX</a>
+    <nav class="nav" aria-label="Principal">
+      <a href="#metodo">Método</a><a href="#sobre-mi">Sobre mí</a><a href="#servicios">Servicios</a><a href="#resultados">Resultados</a>
+    </nav>
+    <a href="#contacto" class="sq" aria-label="Ir al formulario de contacto">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="tag"><span class="dot"></span>Entrenador personal · Madrid • Basic-Fit • Consulta online</p>
+        <h1>Entrena con <span class="ol">intención.</span><br>Vive sin límites.</h1>
+        <div class="ctas">
+          <a href="#contacto" class="btn"><span>Reservar evaluación</span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+          <a href="#metodo" class="link">Descubrir el método <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+        </div>
+      </div>
+
+      <div class="hero-photo">
+        <!-- Sustituir por: <img src="/img/alex-hero.jpg" alt="Alex entrenando" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"> -->
+        <div class="ph-label">Foto de Alex</div>
+        <div class="badge" aria-hidden="true">
+          <svg class="ring" viewBox="0 0 150 150"><defs><path id="c" d="M75,75 m-56,0 a56,56 0 1,1 112,0 a56,56 0 1,1 -112,0"/></defs><text font-family="JetBrains Mono, monospace" font-size="11.5" letter-spacing="1.6" fill="currentColor"><textPath href="#c">TU MEJOR VERSIÓN • MI MISIÓN •</textPath></text></svg>
+          <span class="star">✦</span>
+        </div>
+        <div class="slogan"><p>Tu mejor versión,<b>mi misión.</b></p></div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <div class="stats" role="list">
+        <div class="stat" role="listitem"><span class="num">2<sup>+</sup></span><p>Años de experiencia<br>como entrenador</p></div>
+        <div class="stat" role="listitem"><span class="num">100<sup>+</sup></span><p>Clientes con un plan<br>hecho para ellos</p></div>
+        <div class="stat" role="listitem"><span class="num">7<span class="sl">/</span>7</span><p>Disponible cualquier día<br>de la semana</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTODO -->
+  <section class="s" id="metodo">
+    <div class="wrap">
+      <p class="idx">01</p>
+      <h2>Menos promesas.<br>Más proceso.</h2>
+      <p class="lead">Un entrenamiento adaptado a tus necesidades y a tu nivel físico, para que consigas resultados de forma progresiva y segura.</p>
+      <div class="steps">
+        <div class="step"><span class="n">01</span><div><h3>Evaluar</h3><p class="desc">Empezamos por tu cuerpo, tu rutina y tu objetivo. Nada de planes genéricos.</p></div></div>
+        <div class="step"><span class="n">02</span><div><h3>Planificar</h3><p class="desc">Diseño un programa individual según tus metas, tu experiencia y tu disponibilidad.</p></div></div>
+        <div class="step"><span class="n">03</span><div><h3>Progresar</h3><p class="desc">Medimos, ajustamos y avanzamos. Con seguimiento para que no pierdas la motivación.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="s" id="sobre-mi">
+    <div class="wrap">
+      <p class="idx">02</p>
+      <h2>Quién te<br>acompaña</h2>
+      <div class="about">
+        <div class="about-photo"><div class="ph-label">Foto de Alex</div></div>
+        <div>
+          <h3>Soy Alex</h3>
+          <p class="cert">Entrenador personal certificado</p>
+          <blockquote>Ayudo a las personas a alcanzar sus objetivos físicos, mejorar su condición física, ganar masa muscular y perder peso.</blockquote>
+          <p class="more">Mi objetivo es ofrecerte un entrenamiento personalizado, adaptado a tus necesidades y a tu nivel físico, para que consigas resultados de forma progresiva y segura.</p>
+          <a href="#contacto" class="btn"><span>Hablar conmigo</span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="s" id="servicios">
+    <div class="wrap">
+      <p class="idx">03</p>
+      <h2>Mis<br>servicios</h2>
+      <p class="lead">Formatos distintos. El mismo compromiso con tus resultados.</p>
+      <div class="services">
+        <div class="svc"><h3>Entrenamiento personalizado</h3><div><p class="desc">Sesiones construidas a tu medida, con técnica, intensidad y progresión controladas.</p><div class="chips"><span class="chip">Fuerza</span><span class="chip">Resistencia</span><span class="chip">Calistenia</span></div></div></div>
+        <div class="svc"><h3>Ganancia muscular y pérdida de peso</h3><p class="desc">Te ayudo a ganar masa muscular y reducir el exceso de grasa mediante una alimentación adecuada y un entrenamiento regular.</p></div>
+        <div class="svc"><h3>Planes de entrenamiento individuales</h3><p class="desc">Programas personalizados, adaptados a tus objetivos, necesidades y nivel de experiencia.</p></div>
+        <div class="svc"><h3>Asesoramiento y seguimiento</h3><p class="desc">Asesoramiento y consultas para ayudarte a alcanzar tus objetivos y mantenerte motivado durante todo el proceso.</p></div>
+        <div class="svc"><h3>Profesionalidad, responsabilidad y seguridad</h3><p class="desc">Cada entrenamiento está diseñado teniendo en cuenta tu bienestar, tu progreso y la correcta ejecución de los ejercicios.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISPONIBILIDAD -->
+  <section class="avail" aria-labelledby="disp-t">
+    <div class="marq" aria-hidden="true"><div>Cualquier día ✦ Cualquier hora ✦ Presencial u online ✦ Cualquier día ✦ Cualquier hora ✦ Presencial u online ✦</div><div>Cualquier día ✦ Cualquier hora ✦ Presencial u online ✦ Cualquier día ✦ Cualquier hora ✦ Presencial u online ✦</div></div>
+    <div class="wrap avail-body">
+      <h2 id="disp-t">Tu horario,<br>no el mío.</h2>
+      <p class="lead">Estoy disponible cualquier día de la semana, a cualquier hora. Tú eliges cuándo entrenamos.</p>
+      <div class="week" aria-label="Disponible de lunes a domingo">
+        <span class="day">L</span><span class="day">M</span><span class="day">X</span><span class="day">J</span><span class="day">V</span><span class="day">S</span><span class="day">D</span>
+      </div>
+      <p class="hours">Lunes a domingo · horario flexible</p>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="s" id="resultados" style="padding-top:110px">
+    <div class="wrap ba-wrap">
+      <div>
+        <p class="idx">04</p>
+        <h2>El progreso<br>se ve.</h2>
+        <p class="lead">Desliza para comparar. Resultados construidos con constancia, sin atajos.</p>
+      </div>
+      <div class="ba" id="ba">
+        <!-- Sustituir los textos por <img> de antes / después del cliente (con su permiso) -->
+        <div class="pane before">Foto antes</div>
+        <div class="pane after">Foto después</div>
+        <div class="handle"></div>
+        <input type="range" min="0" max="100" value="50" aria-label="Comparar antes y después">
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="s" id="faq">
+    <div class="wrap">
+      <p class="idx">05</p>
+      <h2>Preguntas<br>frecuentes</h2>
+      <div class="faq">
+        <details><summary>¿Necesito estar en forma para empezar?</summary><p>No. Empezamos desde donde estás hoy. Cada sesión se adapta a tu nivel, tu historial y tu ritmo.</p></details>
+        <details><summary>¿Dónde son los entrenamientos?</summary><p>De forma presencial en Basic-Fit, en Madrid, o mediante consulta online. Lo decidimos juntos en la primera conversación.</p></details>
+        <details><summary>¿Qué días y a qué hora puedo entrenar?</summary><p>Cualquier día de la semana y a cualquier hora. Nos adaptamos a tu agenda.</p></details>
+        <details><summary>¿Cómo funciona la primera evaluación?</summary><p>Es una conversación para entender tus objetivos, tus limitaciones y tu disponibilidad. Al final recibes una propuesta clara de entrenamiento.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="s" id="contacto">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <p class="idx">06</p>
+          <h2>Empieza hoy<br>a transformar<br>tu cuerpo.</h2>
+          <p class="lead">Juntos trabajaremos para alcanzar tus objetivos, mejorar tu condición física y conseguir una versión más saludable y fuerte de ti mismo.</p>
+          <p class="where">Madrid • Basic-Fit<br>Consulta online<br>Lunes a domingo · cualquier hora</p>
+        </div>
+
+        <form id="form" novalidate>
+          <div class="f"><label for="nombre">Nombre <span class="opt">(opcional)</span></label><input id="nombre" name="nombre" autocomplete="name"></div>
+          <div class="row two">
+            <div class="f"><label for="email">Email <span class="req">*</span></label><input id="email" name="email" type="email" required autocomplete="email" inputmode="email"><span class="err" id="email-err" aria-live="polite"></span></div>
+            <div class="f"><label for="tel">Teléfono <span class="req">*</span></label><input id="tel" name="telefono" type="tel" required autocomplete="tel" inputmode="tel"><span class="err" id="tel-err" aria-live="polite"></span></div>
+          </div>
+          <div class="row two">
+            <div class="f"><label for="altura">Altura <span class="opt">(opcional)</span></label><div class="unit"><input id="altura" name="altura_cm" type="number" min="100" max="250" inputmode="numeric"><span>cm</span></div></div>
+            <div class="f"><label for="peso">Peso <span class="opt">(opcional)</span></label><div class="unit"><input id="peso" name="peso_kg" type="number" min="30" max="300" step="0.1" inputmode="decimal"><span>kg</span></div></div>
+          </div>
+          <div class="f"><label for="obj">Objetivo <span class="opt">(opcional)</span></label>
+            <select id="obj" name="objetivo">
+              <option value="">Selecciona tu objetivo</option>
+              <option>Perder peso</option><option>Ganar masa muscular</option><option>Mejorar fuerza y resistencia</option><option>Calistenia</option><option>Otro</option>
+            </select></div>
+          <div class="f"><label for="com">Comentarios <span class="opt">(opcional)</span></label><textarea id="com" name="comentarios" placeholder="Cuéntame tu punto de partida, lesiones, horarios preferidos…"></textarea></div>
+          <label class="check"><input type="checkbox" id="ok" required> Acepto que Alex me contacte sobre el entrenamiento y el tratamiento de mis datos según la política de privacidad.</label>
+          <span class="err" id="ok-err" aria-live="polite"></span>
+          <button class="btn" type="submit"><span>Enviar solicitud</span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></button>
+          <p class="ok" id="sent" role="status">Solicitud enviada. Alex te responderá en menos de 24 horas.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Alex · Entrenador personal</span>
+    <nav><a href="#">Instagram</a><a href="#">Privacidad</a><a href="#top">Volver arriba ↑</a></nav>
+  </div>
+</footer>
+
+<!-- SELECTOR DE VERSIONES: para que el cliente compare. Borrar este bloque al publicar. -->
+<div class="vs" role="group" aria-label="Versión de diseño">
+  Versión
+  <button type="button" data-set="a">A · Noche</button>
+  <button type="button" data-set="b">B · Hielo</button>
+  <button type="button" data-set="c">C · Claro</button>
+</div>
+
+<script>
+/* ===== CONFIGURACIÓN DEL FORMULARIO =====
+   FORM_ENDPOINT: URL de Formspree (https://formspree.io/f/xxxx) u otro servicio.
+   Si se deja vacío, el formulario abre el correo del usuario con los datos rellenos. */
+const FORM_ENDPOINT = "";
+const TRAINER_EMAIL = "alex@ejemplo.com";
+
+/* Versiones: ?v=a | ?v=b | ?v=c   ·   ?clean oculta el selector */
+(function(){
+  const q = new URLSearchParams(location.search);
+  const set = v => {
+    document.documentElement.dataset.v = v;
+    document.querySelectorAll('.vs button').forEach(b => b.setAttribute('aria-pressed', b.dataset.set === v));
+    try { const u = new URL(location); u.searchParams.set('v', v); history.replaceState(null, '', u); } catch (e) { /* vista previa sin URL real: se ignora */ }
+  };
+  set(['a','b','c'].includes(q.get('v')) ? q.get('v') : 'a');
+  if (q.has('clean')) document.body.classList.add('is-clean');
+  document.querySelectorAll('.vs button').forEach(b => b.addEventListener('click', () => set(b.dataset.set)));
+})();
+
+/* Antes / después */
+(function(){
+  const ba = document.getElementById('ba'), r = ba.querySelector('input');
+  const upd = () => ba.style.setProperty('--pos', r.value + '%');
+  r.addEventListener('input', upd); upd();
+})();
+
+/* Formulario */
+(function(){
+  const f = document.getElementById('form');
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  const telRe = /^\+?[\d\s().-]{9,}$/;
+  const err = (id, msg) => { document.getElementById(id).textContent = msg; };
+
+  f.addEventListener('submit', async e => {
+    e.preventDefault();
+    let ok = true;
+    const email = f.email.value.trim(), tel = f.telefono.value.trim();
+    err('email-err', ''); err('tel-err', ''); err('ok-err', '');
+    if (!emailRe.test(email)) { err('email-err', 'Escribe un email válido, por ejemplo nombre@correo.com.'); ok = false; }
+    if (!telRe.test(tel)) { err('tel-err', 'Escribe un teléfono de al menos 9 dígitos.'); ok = false; }
+    if (!f.querySelector('#ok').checked) { err('ok-err', 'Marca la casilla para que Alex pueda contactarte.'); ok = false; }
+    if (!ok) { f.querySelector('.err:not(:empty)')?.previousElementSibling?.focus?.(); return; }
+
+    const data = Object.fromEntries(new FormData(f));
+    const btn = f.querySelector('button[type=submit] span');
+
+    if (FORM_ENDPOINT) {
+      btn.textContent = 'Enviando…';
+      try {
+        const res = await fetch(FORM_ENDPOINT, { method:'POST', headers:{'Accept':'application/json','Content-Type':'application/json'}, body: JSON.stringify(data) });
+        if (!res.ok) throw new Error();
+        f.reset(); document.getElementById('sent').style.display = 'block';
+      } catch {
+        err('ok-err', 'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.');
+      } finally { btn.textContent = 'Enviar solicitud'; }
+    } else {
+      const body = Object.entries(data).filter(([,v]) => v).map(([k,v]) => k + ': ' + v).join('\n');
+      location.href = 'mailto:' + TRAINER_EMAIL + '?subject=' + encodeURIComponent('Nueva solicitud de entrenamiento') + '&body=' + encodeURIComponent(body);
+    }
+  });
+})();
+</script>
+</body>
+</html>
