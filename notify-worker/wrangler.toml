@@ -1,0 +1,7 @@
+name = "alex-form-notify"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+
+[vars]
+# Cambia "*" por el dominio de la web, p. ej. "https://usuario.github.io"
+ALLOWED_ORIGIN = "*"
