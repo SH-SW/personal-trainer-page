@@ -429,7 +429,6 @@ footer nav{display:flex;flex-wrap:wrap;gap:24px}
             <select id="obj" name="objetivo"><option value="" data-i18n="g0">Selecciona tu objetivo</option><option value="Perder peso" data-i18n="g1">Perder peso</option><option value="Ganar masa muscular" data-i18n="g2">Ganar masa muscular</option><option value="Mejorar fuerza y resistencia" data-i18n="g3">Mejorar fuerza y resistencia</option><option value="Calistenia" data-i18n="g4">Calistenia</option><option value="Otro" data-i18n="g5">Otro</option></select></div>
           <div class="f"><label for="com"><span data-i18n="f_com">Comentarios</span> <span class="opt" data-i18n="opt">(opcional)</span></label><textarea id="com" name="comentarios" data-i18n-ph="ph_com" placeholder="Cuéntame tu punto de partida, lesiones, horarios preferidos…"></textarea></div>
           <input type="hidden" name="idioma" id="idioma" value="es">
-          <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;min-height:0;opacity:0">
           <label class="check"><input type="checkbox" id="ok" required> <span data-i18n="consent">Acepto que Alex me contacte sobre el entrenamiento y el tratamiento de mis datos según la política de privacidad.</span></label>
           <span class="err" id="ok-err" aria-live="polite"></span>
           <button class="btn" type="submit"><span id="submit-t" data-i18n="submit">Enviar solicitud</span><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></button>
@@ -474,8 +473,7 @@ footer nav{display:flex;flex-wrap:wrap;gap:24px}
 <script>
 /* ===== CONFIGURACIÓN =====
    INSTAGRAM_URL: enlace al perfil de Alex.
-   FORM_ENDPOINT: URL del Worker de notificaciones (ver notify-worker/README.md) → avisa a Alex por Telegram y WhatsApp.
-                  Vacío = abre el correo con los datos. */
+   FORM_ENDPOINT: URL de Formspree (https://formspree.io/f/xxxx). Vacío = abre el correo con los datos. */
 const INSTAGRAM_URL = "https://www.instagram.com/";
 const FORM_ENDPOINT = "";
 const TRAINER_EMAIL = "alex@ejemplo.com";
@@ -686,7 +684,6 @@ const t = k => (I18N[LANG] && I18N[LANG][k]) || I18N.es[k] || '';
     if (!f.querySelector('#ok').checked) { err('ok-err','e_ok'); first = first || f.querySelector('#ok'); }
     if (first) { first.focus(); return; }
     const data = Object.fromEntries(new FormData(f)), btn = document.getElementById('submit-t');
-    if (data.website) return;   /* honeypot: bot */
     if (FORM_ENDPOINT) {
       btn.textContent = t('sending');
       try {
